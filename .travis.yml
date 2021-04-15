@@ -14,4 +14,4 @@ before_install:
 
 script:
   - docker --version
-  - docker-compose -f ./deployment-services/docker/docker-compose.yml --parallel
+  - docker-compose -f ./deployment-services/docker/docker-compose.yml
