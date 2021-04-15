@@ -1,0 +1,60 @@
+version: '3.8'
+services:
+  reverseproxy-service:
+    image: xeusteerapat/reverseproxy-service
+    container_name: reverseproxy-service
+    build:
+      context: ../../reverseproxy-service
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - users-service
+      - feed-service
+    restart: on-failure
+
+  users-service:
+    image: xeusteerapat/users-service
+    container_name: users-service
+    build:
+      context: ../../users-service
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
+      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD
+      POSTGRESS_DB: $POSTGRESS_DB
+      POSTGRESS_HOST: $POSTGRESS_HOST
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      AWS_BUCKET: $AWS_BUCKET
+      JWT_SECRET: $JWT_SECRET
+      URL: 'http://localhost:8100'
+    restart: on-failure
+
+  feed-service:
+    image: xeusteerapat/feed-service
+    container_name: feed-service
+    build:
+      context: ../../feed-service
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
+      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD
+      POSTGRESS_DB: $POSTGRESS_DB
+      POSTGRESS_HOST: $POSTGRESS_HOST
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      AWS_BUCKET: $AWS_BUCKET
+      JWT_SECRET: $JWT_SECRET
+      URL: 'http://localhost:8100'
+    restart: on-failure
+  frontend:
+    image: xeusteerapat/udagram-frontend
+    container_name: udagram-frontend
+    build:
+      context: ../../udagram-frontend
+    ports:
+      - '8100:80'
+    restart: on-failure
