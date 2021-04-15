@@ -15,10 +15,8 @@ before_install:
 script:
   - docker --version
   - docker-compose -f ./deployment-services/docker/docker-compose.yml
+  - docker-compose -f ./deployment-services/docker/docker-compose.yml build
+  - docker-compose -f push
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push xeusteerapat/reverseproxy-service
-  - docker push xeusteerapat/users-service
-  - docker push xeusteerapat/feed-service
-  - docker push xeusteerapat/udagram-frontend
