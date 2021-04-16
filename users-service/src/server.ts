@@ -43,7 +43,7 @@ dotenv.config();
 
   // Start the Server
   app.listen(port, () => {
-    console.log(`User service is running ${config.url} 🤷‍♂️`);
+    console.log(`User service is running ${port} 🤷‍♂️`);
     console.log(`press CTRL+C to stop server`);
   });
 })();
