@@ -119,4 +119,5 @@ set_env.sh
 .DS_Store
 
 env-secret.yaml
+env-config-map.yaml
 # yep
