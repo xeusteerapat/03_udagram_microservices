@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         service: udagram-frontend
+        api: external 
     spec:
       containers:
       - name: udagram-frontend
