@@ -1,16 +1,3 @@
-// import { Sequelize } from 'sequelize-typescript';
-// import { config } from './config/config';
-
-// export const sequelize = new Sequelize({
-//   host: config.host,
-//   username: config.username,
-//   password: config.password,
-//   database: config.database,
-//   port: 5432,
-//   dialect: config.dialect,
-//   storage: ':memory:',
-// });
-
 import { Sequelize } from 'sequelize-typescript';
 import dotenv from 'dotenv';
 
@@ -21,7 +8,7 @@ export const sequelize = new Sequelize({
   username: process.env.POSTGRES_USERNAME,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
-  port: Number(process.env.POSTGRES_PORT),
+  port: 5432,
   dialect: 'postgres',
   storage: ':memory:',
 });

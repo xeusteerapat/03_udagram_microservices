@@ -118,5 +118,7 @@ dist
 set_env.sh
 .DS_Store
 
-secret.yml
+env-secret.yaml
+env-config-map.yaml
+aws-secret.yaml
 # yep
