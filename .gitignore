@@ -120,4 +120,5 @@ set_env.sh
 
 env-secret.yaml
 env-config-map.yaml
+aws-secret.yaml
 # yep
